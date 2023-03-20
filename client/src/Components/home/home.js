@@ -45,7 +45,7 @@ function Home()
                 </Card.Body>
             </Card>
             </a>
-            
+                <h1>Welcome</h1>
 
         </div>
     );
