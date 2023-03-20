@@ -1,0 +1,35 @@
+.navbar
+{
+border-style: groove;
+}
+.navbarMenu
+{
+}
+.navbarItem
+{
+list-style: none;
+display: inline;
+margin-left: 15px;
+}
+
+
+.navbarLink
+{
+    text-decoration: none;
+}
+
+.navbarIcon
+{
+    margin-right: 5px;
+    display: flex;
+    flex-direction: row;
+}
+.navbarItemIcon
+{
+    
+        list-style: none;
+        display: inline;
+        margin-right: 15px;
+        
+        
+}

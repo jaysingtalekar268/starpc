@@ -1,0 +1,31 @@
+.mainContainer{
+    border-style: solid;
+}
+.accountMenu
+{
+    border-style: solid;
+}
+.menuItem
+{
+    list-style: none;
+}
+.menuLink
+{
+    cursor: pointer;
+    text-decoration: none;
+}
+.accountMenuInfo
+{
+border-style: solid;
+}
+
+.accountInfo
+{
+    border-style: solid;
+}
+
+.personalItem
+{
+    display: flex;
+    flex-direction: column;
+}

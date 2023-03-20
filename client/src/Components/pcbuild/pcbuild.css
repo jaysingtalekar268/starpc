@@ -1,0 +1,45 @@
+.mainDiv{
+    /* max-width: 100%; */
+   
+}
+.cardDiv
+{
+    width: 100%;
+}
+
+.cardContainer
+{
+    
+ /* width: 50%; */
+ width: 100%;
+ 
+}
+
+.cardCol
+{
+    /* margin: 5px; */
+}
+
+.cartCol
+{
+    /* margin: 5px; */
+}
+
+.cartContainer
+{
+    display: flex;
+    flex-direction: column;
+    border-style: groove;
+    margin-top: 1%;
+    border-radius: 5px;
+    background-color: rgb(182, 182, 187);
+}
+
+.cartAddBtn
+{
+    margin: 1% 0%;
+}
+.cartRemBtn{
+    margin: 1% 0%;
+
+}

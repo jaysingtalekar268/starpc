@@ -1,0 +1,20 @@
+.orderBar{
+   display: inline-flex;
+    border-style: solid;
+    border-color: yellow;
+}
+.heading{
+  
+border-style: solid;
+border-color: red;
+}
+.orderFilter{
+   display: inline-flex;
+    justify-content: flex-end;
+    border-style: solid;
+border-color: green;
+}
+
+.mainCard{
+    margin: 1%;
+}
