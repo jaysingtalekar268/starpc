@@ -1,7 +1,12 @@
-.homeDiv
+.homeContainer
+{
+    display: block;
+    /* flex-wrap:wrap; */
+
+}
+.firstRow
 {
     display: flex;
-    flex-wrap:wrap;
 }
 .cardLink
 {

@@ -5,54 +5,210 @@ const session = require("express-session");
 
 require('./db/config');
 const User = require("./db/user");
+const Product = require("./db/product");
+const user = require("./db/user");
 const app = express();
 app.use(express.json());
 app.use(cors());
-app.use(session({saveUninitialized:true,
-    resave:true,
-     secret:"secret"}));
-let userInfo={
-    name:"",
-    email:"",
-    phone:""
-}
-app.post("/user",async (req,resp)=>{
+app.use(session({
+    saveUninitialized: true,
+    resave: true,
+    secret: "secret"
+}));
+let userInfo = {};
+app.post("/Login", async (req, resp) => {
+    console.warn("called");
+    userInfo = {};
+    let userdata = await User.findOne(req.body).select("-password ");
+    console.warn("login status" + userdata)
+    if (userdata) {
 
-    let user = new User(req.body);
-    let result =   await user.save();
-    resp.send(result);      
+        userInfo = userdata;
+        resp.send(userdata);
+    }
+
 });
 
-app.post("/signin",async (req,resp)=>{
-    let fetchedData="";
-    fetchedData = await User.findOne(req.body).select("-password -_id");
-    if(fetchedData.name)
-  { 
-    userInfo={};
-    req.session.userData=fetchedData;
-    req.session.save();
-    userInfo=fetchedData;
-     resp.send(fetchedData);
-   } else 
-   {
-    resp.send({result:"no user found"});
-   }
-    // resp.send(req.body);
-}); 
-app.post("/checkuser",async (req,resp)=>{
-    
-    resp.send(userInfo);
-});
-app.post("/signout",async (req,resp)=>{
-    if(req.session.userData)
-   { req.session.destroy();
-    userInfo={};
-    resp.send("logged out");
 
-   }
-   else
-   {
-    resp.send("No user loged in to kog out");
-   }
+// app.post("/Checkuser", async (req, resp) => {
+
+//     resp.send(userInfo);
+
+// });
+
+app.post("/useradd", async (req, resp) => {
+
+    // console.warn(req.body);
+    let useradd = new User(req.body);
+    let result = await useradd.save();
+
+    // console.warn(req.body.devl_id);
+    // let userProjectResult= await User.findOneAndUpdate({_id:req.body.devl_id},{   $push: {project_id:result._id}}   ,{new :true});
+    // console.warn(userProjectResult); 
+    resp.send(result);
 });
+
+app.post("/productadd", async (req, resp) => {
+
+    console.warn(req.body);
+    let productadd = new Product(req.body);
+    let result = await productadd.save();
+
+
+    resp.send(result);
+});
+
+// app.post("/projectmodify", async (req, resp) => {
+
+//     console.warn(req.body);
+//     // let projectadd = new Project(req.body);
+
+//     // let result = await projectadd.save();
+
+//     const doc = await Project.findOneAndUpdate({ _id: req.body.p_id }, { name: req.body.name, desc: req.body.desc, catg: req.body.catg, deadline: req.body.deadline, pstatus: req.body.pstatus }, { new: true });
+//     console.warn(req.body.p_id);
+
+//     let userProjectRemoveResult = await User.updateMany({ $or: [{ _id: req.body.devl_id }, { _id: req.body.mang_id }] }, { $pull: { project_id: req.body.p_id } }, { new: true });
+//     console.warn(userProjectRemoveResult);
+//     let userProjectAddResult = await User.updateMany({ $or: [{ _id: req.body.devl_id }, { _id: req.body.mang_id }] }, { $push: { project_id: req.body.p_id } }, { new: true });
+//     console.warn(userProjectAddResult);
+
+//     const docProject = await Project.findOneAndUpdate({ _id: req.body.p_id }, { mang_id: req.body.mang_id, devl_id: req.body.devl_id }, { new: true });
+
+//     resp.send(docProject);
+
+
+
+// });
+
+// app.post("/projectdelete", async (req, resp) => {
+
+//     console.warn(req.body);
+//     // let projectadd = new Project(req.body);
+
+//     // let result = await projectadd.save();
+
+//     // await Product.findById(product._id);
+//     // const doc = await Project.findOneAndUpdate({ _id: req.body.p_id }, { name: req.body.name, desc: req.body.desc, catg: req.body.catg, deadline: req.body.deadline, pstatus: req.body.pstatus }, { new: true });
+//     // console.warn(req.body.p_id);
+
+//     let userProjectRemoveResult = await User.updateMany({ $or: [{ _id: req.body.devl_id }, { _id: req.body.mang_id }] }, { $pull: { project_id: req.body.p_id } }, { new: true });
+//     console.warn(userProjectRemoveResult);
+
+//     let projectDelResult = await Project.deleteOne({ _id: req.body.p_id });
+//     console.warn(projectDelResult);
+//     // let userProjectAddResult = await User.updateMany({ $or: [{ _id: req.body.devl_id }, { _id: req.body.mang_id }] }, { $push: { project_id: req.body.p_id } }, { new: true });
+//     // console.warn(userProjectAddResult);
+
+//     // const docProject = await Project.findOneAndUpdate({ _id: req.body.p_id }, { mang_id: req.body.mang_id, devl_id: req.body.devl_id }, { new: true });
+
+//     resp.send(projectDelResult);
+
+
+
+// });
+
+
+// app.post("/getonlyproject", async (req, resp) => {
+//     let projectdata = await Project.find(req.body);
+
+//     resp.send(projectdata);
+
+// });
+
+app.post("/getproduct", async (req, resp) => {
+    let productdata = await Product.find();
+
+    resp.send(productdata);
+
+});
+
+app.post("/getcart", async (req, resp) => {
+    let userdata = await User.find({_id:req.body._id}).select("-password ");
+
+    resp.send(userdata);
+
+});
+
+// app.post("/getuseraccount", async (req, resp) => {
+//     let userdata = await User.findOne({_id:req.body._id}).select("-password ");
+
+//     resp.send(userdata);
+//     // resp.send(req.body);
+
+// });
+
+// app.post("/usermodify", async (req, resp) => {
+//     let userdata = await User.findOneAndUpdate({ _id: req.body._id }, req.body , { new: true });
+
+//     resp.send(userdata);
+//     // resp.send(req.body);
+
+// });
+
+
+
+// app.post("/getdevl", async (req, resp) => {
+//     let userdata = await User.find({ role: "developer" }).select("-password ");
+
+//     resp.send(userdata);
+
+// });
+
+// app.post("/getmang", async (req, resp) => {
+//     let userdata = await User.find({ role: "manager" }).select("-password ");
+
+//     resp.send(userdata);
+
+// });
+// app.post("/getuserproject", async (req, resp) => {
+//     let userdata = await User.find(req.body).populate('project_id').select("project_id -_id");
+//     resp.send(userdata);
+
+// });
+
+// app.post("/getuserprojectstatus", async (req, resp) => {
+//     let userdata = await User.find(req.body).populate('project_id').select("project_id -_id");
+//     resp.send(userdata);
+
+// });
+// app.post("/getuserdates", async (req, resp) => {
+//     let userdata = await User.find(req.body).populate('project_id').select("userevent project_id -_id");
+//     resp.send(userdata);
+
+// });
+
+// app.post("/getusermessage", async (req, resp) => {
+//     let userdata = await User.find(req.body).populate('project_id', 'message name').select("project_id -_id");
+//     resp.send(userdata);
+
+// });
+
+// app.post("/addusertimeline", async (req, resp) => {
+
+//     console.warn("its timeline");
+//     let timelineProjectResult = await Project.findOneAndUpdate({ _id: req.body.project_id }, { $push: { timeline: req.body.timeline } }, { new: true });
+//     // resp.send(req.body);
+//     resp.send(timelineProjectResult);
+// });
+// app.post("/getusertimeline", async (req, resp) => {
+//     let userdata = await User.find(req.body).populate('project_id').select(" project_id -_id");
+//     resp.send(userdata);
+
+// });
+
+// app.post("/messageadd", async (req, resp) => {
+
+//     console.warn("its calling");
+//     let messageProjectResult = await Project.findOneAndUpdate({ _id: req.body.project_id }, { $push: { message: req.body.message } }, { new: true });
+//     resp.send(messageProjectResult);
+// });
+
+// app.post("/eventadd", async (req, resp) => {
+
+//     console.warn("event calling");
+//     let userEventResult = await user.findOneAndUpdate({ name: req.body.name }, { $push: { userevent: req.body.event } }, { new: true });
+//     resp.send(userEventResult);
+// });
+
 app.listen(3001);

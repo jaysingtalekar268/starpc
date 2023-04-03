@@ -2,7 +2,7 @@ import { Container, Row, Col, Tab, Tabs } from "react-bootstrap";
 import './account.css';
 import { useEffect, useState } from "react";
 import Orders from "../Orders/orders";
-import Sign from "../session/session";
+import Login from "../login/login";
 function Account() {
     let [userexist, setuser] = useState(false);
     let [username, setusername] = useState("");
@@ -75,7 +75,7 @@ function Account() {
         );
     }
     else {
-        return (<Sign></Sign>);
+        return (<Login></Login>);
     }
 }
 
