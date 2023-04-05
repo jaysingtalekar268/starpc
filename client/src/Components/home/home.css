@@ -1,7 +1,9 @@
 .homeContainer
 {
     display: block;
-    /* flex-wrap:wrap; */
+    border-style: solid;
+    width: 100%;
+    /*flex-wrap:wrap;*/
 
 }
 .firstRow
@@ -26,4 +28,19 @@
 .cardTitle
 {
    
+}
+
+.a{
+    display:inline;
+    padding: 10px
+}
+
+.lgmo{
+    padding: 75px;
+    transition: transform .2s; /* Animation */
+  
+}
+
+.lgmo:hover{
+    transform: scale(1.25);
 }

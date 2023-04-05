@@ -10,12 +10,18 @@ function Navbar() {
 
     const username = JSON.parse(localStorage.getItem("user"));
 
-
+    function importAll(r) {
+        let images = {};
+        r.keys().forEach((item, index) => { images[item.replace('./', '')] = r(item); });
+        return images
+    }
+    const images = importAll(require.context('../images', false, /\.(png|jpe?g|webp|svg)$/));
 
 
     return (
         <nav className='navbar'>
             <ul className='navbarMenu'>
+                <li className='navbarItem' ><img src={images["logo.jpg"]} alt=''></img></li>
                 <li className='navbarItem' ><Link className='navbarLink' to="/">Home</Link></li>
                 <li className='navbarItem' >{username && username.role == "manager" ? <Link className='navbarLink' to='/products'>Products</Link> : <Link className='navbarLink' to="/pcbuild">PC Build</Link>} </li>
                 <li className='navbarItem' > {username && username.role == "manager" ? <Link className='navbarLink' to='/orders'>Orders</Link> : <Link className='navbarLink' to="/prebuilt">Pre Built PC</Link>} </li>

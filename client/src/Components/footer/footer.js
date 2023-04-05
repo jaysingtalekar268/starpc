@@ -1,11 +1,12 @@
 import { Container, Row, Col } from "react-bootstrap";
+import './footer.css';
 
 function Footer() {
     return (
         <Container>
-            <Row>
+            <Row className="r1">
                 <Col>
-                    <h1>News Letter</h1>
+                    <h1 >News Letter</h1>
                     <p>Stay up to date with news and promotions by signing up for our newsletter</p>
                     <input placeholder="Email"></input>
                     <button > Signup</button>

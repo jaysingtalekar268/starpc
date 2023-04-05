@@ -83,7 +83,7 @@ function Home() {
                             <img key={index + 200}
                                 className="d-block w-100"
                                 // src={imgList[1]}
-                                src={images[product.img[0]]}
+                                src={images["pc1.jpg"]}
                                 alt={""}
                             />
                             <Carousel.Caption key={index + 300}>
@@ -231,7 +231,7 @@ const GetCustomerReview=()=>
 
 if (productData) {
     return (
-        <Container className='homeContainer' >
+        <Container fluid className='homeContainer' >
             <Row className='firstRow' >
                 <Col>
 
@@ -239,38 +239,32 @@ if (productData) {
                         <Carousel.Item>
                             <img
                                 className="d-block w-100"
-                                src={pc_img}
+                                src={images["rtx40.webp"]}
                                 alt="First slide"
                             />
                             <Carousel.Caption>
-                                <h3>First slide label</h3>
-                                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                             </Carousel.Caption>
                         </Carousel.Item>
                         <Carousel.Item>
                             <img
                                 className="d-block w-100"
-                                src={pc_img}
+                                src={images["ultra.jpg"]}
                                 alt="Second slide"
                             />
 
                             <Carousel.Caption>
-                                <h3>Second slide label</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                
                             </Carousel.Caption>
                         </Carousel.Item>
                         <Carousel.Item>
                             <img
                                 className="d-block w-100"
-                                src={pc_img}
+                                src={images["NVIDIA-GeForce-RTX-30-Series-Battlefield-2024-Game-Bundle.jpg"]}
                                 alt="Third slide"
                             />
 
                             <Carousel.Caption>
-                                <h3>Third slide label</h3>
-                                <p>
-                                    Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-                                </p>
+                                
                             </Carousel.Caption>
                         </Carousel.Item>
                     </Carousel>
@@ -282,17 +276,26 @@ if (productData) {
             </Row>
             <Row>
                 <Col>
-                    <ul>
-                        <li> All india Shpooing</li>
-                        <li> All india Shpooing</li>
-                        <li> All india Shpooing</li>
+                    <ul >
+                       <img className='a' src={images["truck.png"]} alt='truck'></img>
+                       <h5 className='a'>All India Shopping</h5>
+                       <img className='a'src={images["lock.png"]} alt="lock"></img>
+                       <h5 className='a'>Secure checkout </h5>
+                       <img className='a'src={images["pc.jpg"]} alt='pc'></img>
+                       <h5 className='a'>Experts in PC Building</h5>
+                       <img className='a'src={images["tick.png"]} alt='tick'></img>
+                       <h5 className='a'>Experts in PC Building</h5>
+
                     </ul>
                 </Col>
             </Row>
             <Row>
                 <Col>
-                    <a><img  src={images["pc_img.jpg"]}></img></a>
-                    <a><img  src={images["pc_img.jpg"]}></img></a>
+                    <ul>
+                        <a><img  className ='lgmo'  src={images["i9.webp"]} alt='pc'></img></a>
+                        
+                        <a><img className='lgmo' src={images["LGmo.jpg"]} alt='pc'></img></a>
+                    </ul>
                 </Col>
             </Row>
             <Row>
